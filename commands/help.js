@@ -8,26 +8,8 @@ exports.run = async (bot, msg, args) => {
     let embedMessage = new embedClass(msg);
 
     if (args[0]) {
-        if (args[0].toLowerCase() === 'fun') {
-            let comm = [];
-            fs.readdir('./commands/', (err, files) => {
-                if (err) {
-                    logger.error(err);
-                }
-                files.forEach(file => {
-                    let info = require('./' + file);
-                    if (info.help.category === 'fun') {
-                        comm.push(`**${config.PREFIX}${file.split('.')[0]}** ${info.help.description}`);
-                    }
-                });
-                let toSend = comm.join('\n');
-                embedMessage.descEmbed({
-                    type: 'desc',
-                    content: toSend,
-                    color: 0x1FBAED
-                });
-            });
-        } else if (args[0].toLowerCase() === 'util') {
+       
+       if (args[0].toLowerCase() === 'util') {
             let comm = [];
             fs.readdir('./commands/', (err, files) => {
                 if (err) {
