@@ -28,44 +28,6 @@ exports.run = async (bot, msg, args) => {
                     color: 0x1FBAED
                 });
             });
-        } else if (args[0].toLowerCase() === 'moderation') {
-            let comm = [];
-            fs.readdir('./commands/', (err, files) => {
-                if (err) {
-                    logger.error(err);
-                }
-                files.forEach(file => {
-                    let info = require('./' + file);
-                    if (info.help.category === 'moderation') {
-                        comm.push(`**${config.PREFIX}${file.split('.')[0]}** ${info.help.description}`);
-                    }
-                });
-                let toSend = comm.join('\n');
-                embedMessage.descEmbed({
-                    type: 'desc',
-                    content: toSend,
-                    color: 0x1FBAED
-                });
-            });
-        } else if (args[0].toLowerCase() === 'music') {
-            let comm = [];
-            fs.readdir('./commands/', (err, files) => {
-                if (err) {
-                    logger.error(err);
-                }
-                files.forEach(file => {
-                    let info = require('./' + file);
-                    if (info.help.category === 'music') {
-                        comm.push(`**${config.PREFIX}${file.split('.')[0]}** ${info.help.description}`);
-                    }
-                });
-                let toSend = comm.join('\n');
-                embedMessage.descEmbed({
-                    type: 'desc',
-                    content: toSend,
-                    color: 0x1FBAED
-                });
-            });
         } else {
             try {
                 let cmd = require('./' + args[0]);
