@@ -77,10 +77,7 @@ exports.run = async (bot, msg, args) => {
         msg.delete();
         let count = 0;
         // Let batch = '';
-        let funCat = [];
         let utilCat = [];
-        let modCat = [];
-        let musicCat = [];
         fs.readdir('./commands/', (err, files) => {
             if (err) {
                 return logger.error(err);
@@ -92,14 +89,13 @@ exports.run = async (bot, msg, args) => {
                 let helpName = file.split('.')[0];
                 let info = helpInfo.help;
                 let description = info.description;
-                } if (info.category === 'util') {
+                 if (info.category === 'util') {
                     utilCat.push(`**${config.PREFIX}${helpName}** ${description}`);
                 }
             });
             // TODO: More checks if we ever have too many commands lol
                     const embed = new discord.RichEmbed()
                         .setColor('#1FBAED');
-                    if ((utilCat.join() + modCat.join() + musicCat.join()).length < 1950) {
                         const embed2 = new discord.RichEmbed()
                             .addField('Util Commands', utilCat.join('\n'))
                             .setColor('#1FBAED');
