@@ -92,26 +92,16 @@ exports.run = async (bot, msg, args) => {
                 let helpName = file.split('.')[0];
                 let info = helpInfo.help;
                 let description = info.description;
-                if (info.category === 'fun') {
-                    funCat.push(`**${config.PREFIX}${helpName}** ${description}`);
-                } else if (info.category === 'util') {
+                } if (info.category === 'util') {
                     utilCat.push(`**${config.PREFIX}${helpName}** ${description}`);
-                } else if (info.category === 'moderation') {
-                    modCat.push(`**${config.PREFIX}${helpName}** ${description}`);
-                } else if (info.category === 'music') {
-                    musicCat.push(`**${config.PREFIX}${helpName}** ${description}`);
                 }
             });
             // TODO: More checks if we ever have too many commands lol
-            if ((funCat.join() + utilCat.join() + modCat.join() + musicCat.join()).length > 1950) {
-                if ((funCat.join() + utilCat.join()).length > 1950) {
                     const embed = new discord.RichEmbed()
-                        .addField('Fun Commands', funCat.join('\n'))
                         .setColor('#1FBAED');
                     if ((utilCat.join() + modCat.join() + musicCat.join()).length < 1950) {
                         const embed2 = new discord.RichEmbed()
                             .addField('Util Commands', utilCat.join('\n'))
-                            .addField('Music Commands', musicCat.join('\n') ? musicCat.join('\n') : 'None')
                             .setColor('#1FBAED');
 
                         msg.channel.send({embed});
@@ -121,11 +111,9 @@ exports.run = async (bot, msg, args) => {
                     }
                 } else {
                     const embed = new discord.RichEmbed()
-                        .addField('Fun Commands', funCat.join('\n'))
                         .addField('Util Commands', utilCat.join('\n'))
                         .setColor('#1FBAED');
                     const embed2 = new discord.RichEmbed()
-                        .addField('Music Commands', musicCat.join('\n') ? musicCat.join('\n') : 'None')
                         .setColor('#1FBAED');
 
                     msg.channel.send({embed});
@@ -133,9 +121,7 @@ exports.run = async (bot, msg, args) => {
                 }
             } else {
                 const embed = new discord.RichEmbed()
-                    .addField('Fun Commands', funCat.join('\n'))
                     .addField('Util Commands', utilCat.join('\n'))
-                    .addField('Music Commands', musicCat.join('\n') ? musicCat.join('\n') : 'None')
                     .setColor('#1FBAED');
                 msg.channel.send({embed});
             }
